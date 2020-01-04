@@ -27,9 +27,9 @@ ops.forEach(function(op){
 				expression.push(op.textContent)
 				isOp = true
 			}else{
-		
+					console.log(expression)
 					screen.textContent = screen.textContent.slice(0,-1)
-					expression.pop
+					expression.pop()
 					screen.textContent += op.textContent
 					expression.push(op.textContent)
 					isOp = true
@@ -41,8 +41,17 @@ ops.forEach(function(op){
 });
 
 document.querySelector('.dot').onclick = function(){
-
-	isOp = false
+	let noPoint = true;
+	number.forEach(function(num){
+		if(num.toString().includes(".")){
+			noPoint = false;
+		}
+	})
+	if(screen.textContent.length < 21 && noPoint){
+		screen.textContent += "."
+		number.push(".")
+		isOp = false
+	}
 }
 
 document.querySelector('.equal').onclick = () => {
